@@ -12,7 +12,7 @@ DEPENDENCIES:
     
     JE
     Digest::MD5
-    Crypt::RSA
+    Crypt::RSA（或者Crypt::OpenSSL::RSA Crypt::OpenSSL::Bignum）
 
 COPYRIGHT and LICENCE
 
