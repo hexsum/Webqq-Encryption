@@ -10,7 +10,6 @@ WriteMakefile(
     PREREQ_PM         => {
         "JE"                    => 0,
         "Digest::MD5"           => 0,
-        "Crypt::RSA"            => 0,
     }, # e.g., Module::Name => 1.1
     dist              => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'Webqq-Encryption-* MANIFEST' },

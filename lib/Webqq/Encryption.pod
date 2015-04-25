@@ -12,7 +12,7 @@ Webqq::Encryption - Webqq Login Encryption Library
 
     #输入的参数依次是：登录密码的32位MD5值，盐，验证码
 
-    #使用纯Perl代码进行加密计算
+    #使用纯Perl代码进行加密计算,需要安装 Crypt::RSA （或者Crypt::OpenSSL::RSA Crypt::OpenSSL::Bignum）
     $p = pwd_encrypt($pwd,$md5_salt,$verifycode);
 
     #使用原始javascript进行加密计算（速度慢）
@@ -23,9 +23,11 @@ Webqq::Encryption - Webqq Login Encryption Library
 
 此模块应用在L<Webqq::Client>和L<Webqq::Qun>中，也可能应用在其他的基于web的腾讯登录页面
 
-因为腾讯的登录方式是统一的，该模块集成了javascript解释器，支持使用原生的javascript代码进行运算（速度较慢）
+因为腾讯的web登录方式是统一的，该模块集成了javascript解释器，支持使用原生的javascript代码进行运算（速度较慢）
 
-也可以支持perl原始代码，更多详情可以参考L<Webqq::Client>和L<Webqq::Qun>
+如果希望提升运算速度，可以选择安装Crypt::RSA（或者Crypt::OpenSSL::RSA Crypt::OpenSSL::Bignum）
+
+更多详情可以参考L<Webqq::Client>和L<Webqq::Qun>
 
 =head1 SEE ALSO
 
