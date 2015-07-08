@@ -9,24 +9,51 @@ BEGIN{
         $Webqq::Encryption::TEA::has_je = 1 unless $@;
 }
 
-sub strToBytes{
+
+sub encrypt_js{
+    my ($key,$data) = @_;
+    my $je = _load_je();
+    my $p = $je->eval(qq#
+        var tea = TEA();
+        tea.initkey('$key');
+        var r = tea.encrypt2('$data');
+        tea.initkey('');
+        return(r);
+    #);
+    if($p and !$@){
+        return $p;
+    }
+    else{
+        croak "Webqq::Encryption::TEA error: $@\n";
+    }
+}
+sub decrypt_js{
+    my ($key,$data) = @_;
+    my $je = _load_je();
+    my $p = $je->eval(qq#
+        var tea = TEA();
+        tea.initkey('$key');
+        var r = tea.decrypt('$data');
+        tea.initkey('');
+        return(r);
+    #);
+    if($p and !$@){
+        return $p;
+    }
+    else{
+        croak "Webqq::Encryption::TEA error: $@\n";
+    }
+}
+
+sub strToHex{
     my $str = shift;
-    #$str = join "",map {"\\x$_"} unpack "H2"x length($str),$str;
     my $return = "";   
     for(split //,$str){$return .= sprintf "%02x",ord($_)};
-    #print qq#
-    #    var tea = TEA();
-    #    var r = tea.strToBytes('$str');
-    #    return(r);
-    ##;
-    #$return = $je->eval(qq#
-    #    var tea = TEA();
-    #    var r = tea.strToBytes('$str');
-    #    return(r);
-    ##);
-
-    #croak $@ if $@;
     return $return;
+}
+
+sub hexToStr{
+    return pack "H*",lc shift;
 }
 sub _load_je{
     my $je;
@@ -54,18 +81,9 @@ sub _load_je{
 }
 sub encrypt {
     my ($key,$data) = @_;
-    #$key = join "",map {"\\x$_"} unpack "H2"x length($key),$key;
-    my $p = Webqq::Encryption::TEA::Perl::encrypt($key,$data);
+    my $p = Webqq::Encryption::TEA::Perl::encrypt(hexToStr($data),hexToStr($key));
     return  MIME::Base64::encode_base64($p,"") if $p;
 
-    #print qq#
-    #    var tea = TEA();
-    #    tea.initkey('$key');
-    #    //var r = tea.enWithoutBase64('$data');
-    #    var r = tea.enAsBase64("$data");
-    #    tea.initkey("");
-    #    return(r);
-    ##;
     my $je = _load_je();
     my $p = $je->eval(qq#
         var tea = TEA();

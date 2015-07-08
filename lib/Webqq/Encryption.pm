@@ -23,13 +23,13 @@ sub pwd_encrypt{
     my $s2 = md5_hex($h1 . $md5_salt)  ;
     my $rsaH1= Webqq::Encryption::RSA::encrypt($h1);
     my $rsaH1Len = sprintf "%x",length($rsaH1)/2;
-    my $hexVcode = Webqq::Encryption::TEA::strToBytes(uc $verifycode);
+    my $hexVcode = Webqq::Encryption::TEA::strToHex(uc $verifycode);
     my $vcodeLen = "000" . sprintf("%x",length($verifycode));
     while(length($rsaH1Len) < 4){
         $rsaH1Len = "0" . $rsaH1Len;
     }   
     
-    my $saltPwd = Webqq::Encryption::TEA::encrypt($s2,$rsaH1Len . $rsaH1 . Webqq::Encryption::TEA::strToBytes($md5_salt) . $vcodeLen . $hexVcode);
+    my $saltPwd = Webqq::Encryption::TEA::encrypt($s2,$rsaH1Len . $rsaH1 . Webqq::Encryption::TEA::strToHex($md5_salt) . $vcodeLen . $hexVcode);
     $saltPwd =~ tr/\/\+=/-*_/;
     return $saltPwd;
 }
