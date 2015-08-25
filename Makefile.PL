@@ -1,5 +1,5 @@
 use 5.008008;
-use ExtUtils::MakeMaker;
+use ExtUtils::MakeMaker "6.46";
 # See lib/ExtUtils/MakeMaker.pm for details of how to influence
 # the contents of the Makefile that is written.
 WriteMakefile(
@@ -14,6 +14,7 @@ WriteMakefile(
     dist              => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'Webqq-Encryption-* MANIFEST' },
     META_MERGE => {
+        'meta-spec' => { version => 2 },
         resources => {     
             repository=>{
                 type    => 'git',

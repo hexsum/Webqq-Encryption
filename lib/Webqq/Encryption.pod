@@ -15,7 +15,7 @@ Webqq::Encryption - Webqq Login Encryption Library
     #使用纯Perl代码进行加密计算,需要安装 Crypt::RSA （或者Crypt::OpenSSL::RSA Crypt::OpenSSL::Bignum）
     $p = pwd_encrypt($pwd,$md5_salt,$verifycode);
 
-    #使用原始javascript进行加密计算（速度慢）
+    #使用原始javascript进行加密计算,需要安装 JE 模块 （速度慢）
     $p = pwd_encrypt_js($pwd,$md5_salt,$verifycode);
     
 

@@ -85,7 +85,7 @@ sub encrypt {
     return  MIME::Base64::encode_base64($p,"") if $p;
 
     my $je = _load_je();
-    my $p = $je->eval(qq#
+    $p = $je->eval(qq#
         var tea = TEA();
         tea.initkey('$key');
         var r = tea.encrypt('$data');    
