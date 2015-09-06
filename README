@@ -1,4 +1,4 @@
-Webqq::Encryption v1.4
+Webqq::Encryption v1.5
 ========================
 
 安装方法:
@@ -14,12 +14,12 @@ Webqq::Encryption v1.4
 
 依赖模块:
     
-    JE
+    Crypt::RSA
     Digest::MD5
 
-可选依赖模块(安装后将极大的提升运算速度)：
-
-    Crypt::RSA（或者者Crypt::OpenSSL::RSA Crypt::OpenSSL::Bignum）
+若Crypt::RSA安装有困难导致Webqq::Encryption安装不成功，可以选择安装替代模块，然后再强制安装Webqq::Encryption
+1）安装Crypt::OpenSSL::RSA 和 Crypt::OpenSSL::Bignum （Centos下可以通过yum -y install perl-Crypt-OpenSSL-* 来方便安装）
+2）安装 JE 模块（这是一个纯perl实现的javascript引擎 使用js代码计算RSA 速度较慢）
 
 COPYRIGHT and LICENCE
 
