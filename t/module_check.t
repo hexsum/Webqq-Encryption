@@ -6,17 +6,19 @@
 # change 'tests => 1' to 'tests => last_test_to_print';
 use Test::More tests => 2;
 my %hold = (
-    'JE'         => undef,
-    'Crypt::RSaA' => undef,
-    'Digest::MD5'=> undef,
+    'Digest::MD5'   => undef,
+    'JE'            => undef,
+    'Crypt::RSA'    => undef,
+    'Crypt::OpenSSL::RSA'   => undef,
+    'Crypt::OpenSSL::Bignum'=> undef,
 );
 for my $module (keys %hold){
     eval "require $module";
     $hold{$module} = $@?$@:"ok";     
 }
 
-ok($hold{'Digest::MD5'} eq "ok", "md5 module check");
-ok($hold{'Crypt::RSA'} eq "ok" ||  $hold{'JE'} eq "ok"  ||  0 , "rsa module check");
+ok($hold{'Digest::MD5'} eq "ok", "module Digest::MD5 has been installed?");
+ok($hold{'Crypt::RSA'} eq "ok" ||  ($hold{'Crypt::OpenSSL::RSA'} eq "ok" and $hold{'Crypt::OpenSSL::Bignum'} eq "ok") || $hold{'JE'} eq "ok"  ||  ( print "If you have trouble installing Crypt::RSA , you can try installing cpan module Crypt::OpenSSL::RSA or JE instead, see https://metacpan.org/pod/distribution/Webqq-Encryption/lib/Webqq/Encryption.pod\n" and 0) , "module Crypt::RSA has been installed?");
 
 #########################
 
