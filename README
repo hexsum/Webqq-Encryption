@@ -8,9 +8,7 @@ Webqq::Encryption v1.5
    make test
    make install
 
-   推荐使用CPAN安装
-  
-   cpan -i Webqq::Encryption
+   推荐使用cpanm安装 Webqq::Encryption
 
 依赖模块:
     
