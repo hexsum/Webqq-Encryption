@@ -18,7 +18,8 @@ for my $module (keys %hold){
 }
 
 ok($hold{'Digest::MD5'} eq "ok", "module Digest::MD5 has been installed?");
-ok($hold{'Crypt::RSA'} eq "ok" ||  ($hold{'Crypt::OpenSSL::RSA'} eq "ok" and $hold{'Crypt::OpenSSL::Bignum'} eq "ok") || $hold{'JE'} eq "ok"  ||  ( print "If you have trouble installing Crypt::RSA , you can try installing cpan module Crypt::OpenSSL::RSA or JE instead, see https://metacpan.org/pod/distribution/Webqq-Encryption/lib/Webqq/Encryption.pod\n" and 0) , "module Crypt::RSA has been installed?");
+
+($hold{'Crypt::OpenSSL::RSA'} eq "ok" and $hold{'Crypt::OpenSSL::Bignum'} eq "ok") || ok($hold{'Crypt::RSA'} eq "ok" ||  $hold{'JE'} eq "ok"  ||  ( print "If you have trouble installing Crypt::RSA , you can try installing cpan module Crypt::OpenSSL::RSA or JE instead, see https://metacpan.org/pod/distribution/Webqq-Encryption/lib/Webqq/Encryption.pod\n" and 0) , "module Crypt::RSA has been installed?");
 
 #########################
 
