@@ -18,7 +18,7 @@ Webqq::Encryption v1.6
 
     3) Ubuntu/MacOS
 
-        apt-get install libcrypt-opensssl-bignum-perl libcrypt-openssl-rsa-perl
+        apt-get install libcrypt-openssl-bignum-perl libcrypt-openssl-rsa-perl
 
 
    2. 在线安装 Webqq::Encryption
