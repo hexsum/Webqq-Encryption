@@ -27,10 +27,11 @@ Webqq::Encryption v1.6
 
 调用方法：
 
-    use Webqq::Encryption qw(pwd_encrypt);
+    use Webqq::Encryption;
+    use Digest::MD5;
  
-    #输入的参数依次是：登录密码的32位MD5值，盐，验证码
-    my $encrypt_pwd = pwd_encrypt($pwd,$md5_salt,$verifycode);
+    #pwd_encrypt接受的参数依次是：登录密码的32位MD5值，盐，验证码
+    my $encrypt_pwd = Webqq::Encryption::pwd_encrypt(Digest::MD5::md5_hex('QQ原始登录密码'),$md5_salt,$verifycode);
 
 COPYRIGHT and LICENCE
 
