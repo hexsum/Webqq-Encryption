@@ -25,6 +25,13 @@ Webqq::Encryption v1.6
    
         cpanm Webqq::Encryption
 
+调用方法：
+
+    use Webqq::Encryption qw(pwd_encrypt);
+ 
+    #输入的参数依次是：登录密码的32位MD5值，盐，验证码
+    my $encrypt_pwd = pwd_encrypt($pwd,$md5_salt,$verifycode);
+
 COPYRIGHT and LICENCE
 
 Copyright (C) 2014 by sjdy521
